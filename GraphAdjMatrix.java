@@ -48,7 +48,7 @@ public class GraphAdjMatrix implements Graph {
 	public int inDegree(int vertex){
 		int degree  = 0;
 		for(int i = 0; i < edgeMatrix.length; i++){
-			if(edgeMatrix[i][vertex] != -1){
+			if(edgeMatrix[i][vertex] != 0){
 				degree++;
 			}
 		}
@@ -76,7 +76,6 @@ public class GraphAdjMatrix implements Graph {
 	
 	 @Override
 	public void topologicalSort(){
-		
 		int[]  incident = new int[edgeMatrix.length];
 		int count = 0;
 		for(int i = 0; i < edgeMatrix.length; i++){
@@ -91,18 +90,19 @@ public class GraphAdjMatrix implements Graph {
 			
 		while(!stack.isEmpty()){
 			int vertex = stack.pop(); 
-			System.out.println(vertex + " ");
+			System.out.print(vertex + " ");
 			count = count + 1;
 			for(int i = 0; i < edgeMatrix.length; i ++){
-				if(--incident[i] == 0){
+				incident[i]--;
+				if(incident[i] == 0){
 					stack.push(i);
 				}
 			}
-			if(count != vertex){
-				 System.out.println("Graph has a circle");
-			}
 		}
-		
+		if(count != size){
+			 System.out.println("Graph has a circle");
+		}
+		System.out.println("");
 		
 	}
 	 
