@@ -106,6 +106,11 @@ public class GraphAdjMatrix implements Graph {
 		
 	}
 	 
+	 /**
+	  * @param vertex
+	  * Collect all the neighbors of the given vertex
+	  * @return int[] newNeighbor
+	  */
 	 @Override
 	public int[] neighbors(int vertex){
 		 if(vertex > size){
